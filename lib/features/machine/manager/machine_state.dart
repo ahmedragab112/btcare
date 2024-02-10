@@ -9,7 +9,10 @@ abstract class MachineState extends Equatable {
 
 class MachineInitial extends MachineState {}
 
-class MachineSuccess extends MachineState {}
+class MachineSuccess extends MachineState {
+  final MachineResponse data;
+  const MachineSuccess({required this.data});
+}
 
 class MachineFailed extends MachineState {
   final String error;

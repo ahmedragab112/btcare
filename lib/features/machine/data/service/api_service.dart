@@ -6,7 +6,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'api_service.g.dart';
 
-@RestApi(baseUrl: 'http://localhost:5000')
+@RestApi(baseUrl: 'http://127.0.0.1:5000')
 abstract class MachineWebService {
   factory MachineWebService(Dio dio, {String baseUrl}) = _MachineWebService;
   @POST('/upload')  

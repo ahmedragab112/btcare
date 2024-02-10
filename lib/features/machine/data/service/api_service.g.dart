@@ -13,7 +13,7 @@ class _MachineWebService implements MachineWebService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://localhost:5000';
+    baseUrl ??= 'http://10.0.2.2:5000';
   }
 
   final Dio _dio;
@@ -25,13 +25,14 @@ class _MachineWebService implements MachineWebService {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = FormData.fromMap({
-      'image': [
-        await MultipartFile.fromFile(image.path,
-            filename: image.path.split('/').last),
-      ],
-    });
-
+    final _data = FormData();
+    _data.files.add(MapEntry(
+      'image',
+      MultipartFile.fromFileSync(
+        image.path,
+        filename: image.path.split(Platform.pathSeparator).last,
+      ),
+    ));
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<MachineResponse>(Options(
       method: 'POST',

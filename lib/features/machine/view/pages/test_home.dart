@@ -9,7 +9,6 @@ class TestHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var bloc = BlocProvider.of<MachineCubit>(context);
     return Scaffold(
       body: Center(
         child: Column(
@@ -33,9 +32,9 @@ class TestHome extends StatelessWidget {
             BlocBuilder<MachineCubit, MachineState>(
               builder: (context, state) {
                 if (state is MachineSuccess) {
-                  return Text(bloc.result!);
+                  return Text(state.data.result??'');
                 } else {
-                  return const Text(" please upload image ");
+                  return const Text("please upload image");
                 }
               },
             ),
