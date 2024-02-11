@@ -4,7 +4,15 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-Future <File?> uploadImageToApi(XFile image) async {
+Future<File?> pickCameraImage(XFile image) async {
+  var image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image != null) {
+      return File(image.path);
+    } else {
+      return null;
+    }
+}
+Future <File?> pickGalleryImage(XFile image) async {
   PermissionStatus status;
   if (Platform.isAndroid) {
     final andriodInfo = await DeviceInfoPlugin().androidInfo;

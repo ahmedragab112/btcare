@@ -22,13 +22,14 @@ class BuildListener extends StatelessWidget {
           Navigator.pop(context);
           showDialog(
             context: context,
-            builder: (context) =>  Center(
-              child:Text(state.error)
-            ),
+            builder: (context) => Center(child: Text(state.error)),
           );
-        }
-        else if (state is MachineSuccess) {
+        } else if (state is MachineSuccess) {
           Navigator.pop(context);
+        } else if (state is UploadImageFailed) {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.error)));
         }
       },
       child: const SizedBox.shrink(),

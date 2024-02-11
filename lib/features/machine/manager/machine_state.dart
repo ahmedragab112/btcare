@@ -23,3 +23,7 @@ class MachineLoading extends MachineState {}
 
 class UploadImage extends MachineState {
 }
+class UploadImageFailed extends MachineState {
+  final String error;
+  const UploadImageFailed({required this.error});
+}
