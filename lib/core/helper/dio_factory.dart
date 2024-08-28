@@ -2,18 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
-    DioFactory._();
+  DioFactory._();
 
   static Dio? dio;
 
   static Dio getDio() {
-    Duration timeOut = const Duration(seconds: 30);
+    Duration timeOut = const Duration(seconds: 100);
 
     if (dio == null) {
       dio = Dio();
       dio!
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
+
       addDioInterceptor();
       return dio!;
     } else {
@@ -29,5 +30,6 @@ class DioFactory {
         responseHeader: true,
       ),
     );
+
   }
 }
