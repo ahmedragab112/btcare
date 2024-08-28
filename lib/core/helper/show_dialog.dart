@@ -1,5 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:btcare/features/machine/manager/machine_cubit.dart';
+import 'package:btcare/features/patient/machine/manager/machine_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,10 +19,10 @@ void testDialog(BuildContext context) {
     btnOkText: 'Camera',
     btnCancelText: 'Gallery',
     btnOkOnPress: () async {
-      await context.read<MachineCubit>().pickCameraImage();
+      await context.read<HomeCubit>().pickCameraImage();
     },
     btnCancelOnPress: () async {
-      await context.read<MachineCubit>().pickGalleryImage();
+      await context.read<HomeCubit>().pickGalleryImage();
     },
   ).show();
 }
